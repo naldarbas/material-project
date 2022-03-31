@@ -1,0 +1,40 @@
+<!--   
+Apply filter to search after install npm i ng2-search-filter --save  and import {Ng2SearchPipeModule }
+-->
+<div class="container" id="main-container">
+  <input type="text" class="form-control" placeholder="ابحث  ...."  [(ngModel)]="filterTerm">
+  <br>
+    <div class="row">
+            <table
+                  class="table table-vcenter" *ngFor="let material of materials | filter: filterTerm ; let i = index " >
+              <thead>
+                <tr>
+                  <th>العنوان</th>
+                  <th>تاريخ الرصد</th>
+                  <th>الموؤلف</th>
+                  <th>إجراءات</th>
+                  <th class="w-1"></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr >
+                  <td> <a  [routerLink]="[material.id]" >{{material.title}} </a> </td>
+
+                  <td class="text-muted" >
+                    {{material.monitorDate}}
+                  </td>
+                  <td class="text-muted" >  {{material.author}} </td>
+                  <td class="text-muted" >
+                
+                  </td>
+                  <td>
+                    <a [routerLink]="[material.id]"  class="btn btn-light" role="button">عـرض</a>                    
+                    <a href="#" class="btn btn-light" role="button"> تعديل</a>
+                    <a href="#" class="btn btn-light" role="button">حـذف</a>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+      </div>
+
