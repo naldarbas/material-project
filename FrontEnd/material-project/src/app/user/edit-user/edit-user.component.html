@@ -1,0 +1,24 @@
+<form #editForm="ngForm">  >
+
+    <input type="hidden" ngModel="{{update?.id}}" name="id" class="form-control" id="id" >
+    <div class="mb-3">
+      <label class="form-label"> الاسم كامل باللغه العربية : </label>
+      <input ngModel="{{update?.fullname}}"   type="text" class="form-control" required minlength="2" maxlength="50"  name="fullname"  placeholder="فضلا ادخل الاسم" > 
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label"> اسم المستخدم باللغة الإنجليزيه : </label>
+      <input  ngModel="{{update?.username}}"   type="text" class="form-control" required minlength="2" maxlength="15"  name="username" placeholder="فضلا ادخل اسم المستخدم">
+   
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label"> الإيميل :</label>
+      <input ngModel="{{update?.email}}"   type="text" class="form-control" required minlength="4" maxlength="150"  name="email"  placeholder="فضلا ادخل الإيميل">
+
+    </div>
+
+    <button (click)="onUpdateUser(editForm.value)"  type="submit" class="btn btn-primary" > تعديـل  </button>
+    
+  </form>
+

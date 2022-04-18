@@ -34,4 +34,16 @@ public class MaterialService {
     public Material findMaterialByTitle(String title){
         return materialRepo.findMaterialByTitle(title).orElseThrow(()-> new MaterialNotFoundException ("Title "+ title +"Not Found"));
     }
+
+    public Material updateMaterial(Material material){
+        return materialRepo.save(material);
+    }
+
+    public String deleteMaterialById(String id){
+        //System.out.println(materialRepo.findMaterialById(Long.parseLong(id)));
+        materialRepo.deleteById(Long.parseLong(id));
+        return ("Material"+ id + "Deleted successfully ..!");
+    }
+
+
 }

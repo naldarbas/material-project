@@ -1,0 +1,39 @@
+
+<div class="container" id="main-container">
+    <input type="text" class="form-control" placeholder="ابحث  ...."  [(ngModel)]="filterTerm">
+    <br>
+      <div class="row">
+              <table
+                    class="table table-vcenter" *ngFor="let user of users | filter: filterTerm ; let i = index " >
+                <thead>
+                  <tr>
+                    <th>اسم المستخدم</th>
+                    <th> الإيميل</th>
+                    <th>الحالة</th>
+                    <th>إجراءات</th>
+                    <th class="w-1"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr >
+                    <td> <a  [routerLink]="[user.id]" >{{user.username}} </a> </td>
+  
+                    <td class="text-muted" >
+                      {{user.email}}
+                    </td>
+                    <td class="text-muted" >  {{user.state}} </td>
+                    <td class="text-muted" >
+                  
+                    </td>
+                    <td>
+                      <a [routerLink]="[user.id]"  class="btn btn-light" role="button">عـرض</a>                    
+                      <a [routerLink]="['/user/','update',user.id]"  class="btn btn-light" role="button"> تعديل</a>
+                      <a (click)="onDeleteUser(user.id)" class="btn btn-light" role="button">حـذف</a>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+        </div>
+  
+  

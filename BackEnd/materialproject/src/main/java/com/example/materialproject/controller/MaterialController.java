@@ -1,6 +1,7 @@
 package com.example.materialproject.controller;
 
 import com.example.materialproject.model.Material;
+import com.example.materialproject.repo.MaterialRepo;
 import com.example.materialproject.service.MaterialService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,6 +19,8 @@ import java.util.Optional;
 public class MaterialController {
     private ArrayList<Material> materialArrayList = new ArrayList<>();
     private MaterialService materialService;
+    private MaterialRepo materialRepo;
+
 
 
     @Autowired
@@ -44,14 +47,27 @@ public class MaterialController {
 
      @GetMapping("/search/{title}")
      public ResponseEntity<Material> getMaterialByTitle(@PathVariable("title") String title){
-        Material materiall=materialService.findMaterialByTitle(title);
-           return new ResponseEntity<>(materiall,HttpStatus.OK);
+        Material materialSearch=materialService.findMaterialByTitle(title);
+           return new ResponseEntity<>(materialSearch,HttpStatus.OK);
        }
 
      @GetMapping(path = "/list/{id}")
      public Optional<Material> getMaterialByTitle(@PathVariable Long id){
         return materialService.getMaterial(id);
       }
+
+    @PutMapping("/update")
+    public ResponseEntity<Material> updateMaterial(@RequestBody Material material){
+        Material updateMaterial=materialService.updateMaterial(material);
+        return new ResponseEntity<>(updateMaterial,HttpStatus.OK);
+    }
+
+
+    @DeleteMapping("/delete/{id}")
+    public void deleteMaterial(@PathVariable("id") String id){
+        ResponseEntity.ok().body(materialService.deleteMaterialById(id));
+
+    }
 
       //Method to Find the File Extension
       private static String getFileExtension(String fileName ) {
@@ -61,5 +77,7 @@ public class MaterialController {
             return "File don't have extension";
         }
     }
+
+
 
 }

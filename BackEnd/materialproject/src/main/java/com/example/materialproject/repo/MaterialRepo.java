@@ -14,5 +14,5 @@ public interface MaterialRepo  extends JpaRepository<Material,Long> {
 
     Optional<Object> findMaterialById(Long id);
 
-    Optional<Material> findById(Integer id);
+
 }

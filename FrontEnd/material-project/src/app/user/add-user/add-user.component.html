@@ -1,0 +1,41 @@
+<form #myForm="ngForm" (ngSubmit)="onAddUser(myForm)" method="post" >
+
+ 
+      <div class="mb-3">
+        <label class="form-label"> الاسم كامل باللغه العربية : </label>
+        <input pattern="^[\u0621-\u064A\s\p{N}]+$" ngModel #fullname="ngModel" type="text" class="form-control" required minlength="2" maxlength="50"  name="fullname"  placeholder="فضلا ادخل الاسم" > 
+        <span class="help-block" *ngIf="!fullname.valid && fullname.touched">
+               الرجاء ادخال الاسم  
+        </span>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label"> اسم المستخدم باللغة الإنجليزيه : </label>
+        <input  pattern="^[a-zA-Z0-9-_.]+$"  ngModel #username="ngModel"  type="text" class="form-control" required minlength="2" maxlength="15"  name="username" placeholder="فضلا ادخل اسم المستخدم">
+        <span class="help-block" *ngIf="!username.valid && username.touched">
+          الرجاء ادخال اسم المستخدم   
+        </span>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label"> الإيميل :</label>
+        <input pattern="\w+?@\w+?\x2E.+"  ngModel  #email="ngModel"  type="text" class="form-control" required minlength="4" maxlength="150"  name="email"  placeholder="فضلا ادخل الإيميل">
+        <span class="help-block" *ngIf="!email.valid && email.touched">
+          الرجاء ادخال الإيميل  
+        </span>
+      </div>
+
+      <!-- <div class="mb-3">
+        <label class="form-label"> الحالة :</label>
+        <select class="form-select" required ngModel name="state" #state="ngModel" >
+          <option value="active"> active </option>
+
+        </select>
+        <span class="help-block" *ngIf="!state.valid && state.touched">
+          الرجاء ادخال الحالة  
+        </span>
+      </div> -->
+
+      <button [disabled]="myForm.invalid" type="submit" class="btn btn-primary" >إضافه المستخدم </button>
+      
+    </form>
